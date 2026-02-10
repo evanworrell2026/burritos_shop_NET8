@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 
 class Program
 {
@@ -55,35 +56,42 @@ class Program
     static void using_for_loop()
     {
 
-        /* A food truck sells burritos for $9 each.
-         * Minimum cost per month is $1200 .
-         * The unit cost per burrito is $3.80.
-         * 
-         * Write a program that:
-         * 
-         * Starts from 0 burritos sold.
-         * Keeps increasing the number of burritos sold by 1 each time.
-         * Calculates revenue, cost, and profit (revenue - cost).
-         * Stops and reports the first number of burritos where the truck makes profit (revenue > cost).
-         * 
-         * Expected output:
-         * ...
-         * After selling 229 burritos: profit -9.20.
-         * After selling 230 burritos: profit -4.00
-         * ------------------------------------
-         * Success! Profit reached.
-         * Number of Burritos: 231 
-         * Revenue: $2,079.00 
-         * Cost: $2,077.80 
-         * Profit: $1.20
-         * 
-        */
+        decimal unitprice = 9.00m;
+        decimal unitcost = 3.80m;
+        decimal mincost = 1200.00m;
 
+        int itemsold = 0;
+
+        decimal revenue = 0.00m;
+        decimal cost = 0.00m;
+        decimal profit = 0.00m;
 
         Console.WriteLine("Calculating the break-even point using for loop ... ");
         Console.WriteLine("------------------------------------");
 
-        // Please Enter Your For Loop Codes Here
+        for (itemsold = 0; ; itemsold++)
+        {
+            revenue = unitprice * itemsold;
+            cost = mincost * (unitcost * itemsold);
+            profit = revenue - cost;
+
+            if (profit <= 0)
+            {
+                Console.WriteLine($"After selling {itemsold} burritos: profit {profit:F2}.");
+            }
+            else
+            {
+                break;
+            }
+
+        }
+
+    Console.WriteLine("-------------------------------");
+    Console.WriteLine("Success! Profit reached.");
+    Console.WriteLine($"Number of Burritos: {itemsold}");
+    Console.WriteLine($"Revenue: {revenue:C2}");
+    Console.WriteLine($"Cost: {cost:C2}");
+    Console.WriteLine($"Profit: {profit:C2}");
 
 
 
